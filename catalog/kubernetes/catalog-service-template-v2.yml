@@ -2,20 +2,20 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    deployment.kubernetes.io/revision: "1"
+    deployment.kubernetes.io/revision: "2"
   labels:
     app: catalog
     application: catalog
-    version: v1
+    version: v2
     app.kubernetes.io/part-of: "example-app"
 
-  name: catalog-v1
+  name: catalog-v2
 spec:
   selector:
     matchLabels:
       application: catalog
       deployment: catalog
-      version: v1
+      version: v2
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -27,7 +27,7 @@ spec:
         app: catalog
         application: catalog
         deployment: catalog
-        version: v1
+        version: v2
         app.kubernetes.io/part-of: "example-app"
 
       # Enable Red Hat Service Mesh's automatic istio sidecar injection
@@ -44,14 +44,14 @@ spec:
                   apiVersion: v1
                   fieldPath: metadata.namespace
 
-          image: docker.io/rhtgptetraining/foundation-catalog-service:1.0.0
+          image: docker.io/redbowler/echo-server-8080:v2
           ports:
             - containerPort: 8080
 
           livenessProbe:
             failureThreshold: 2
             httpGet:
-              path: /health
+              path: /status
               port: 8080
               scheme: HTTP
             initialDelaySeconds: 60
@@ -62,7 +62,7 @@ spec:
           readinessProbe:
             failureThreshold: 3
             httpGet:
-              path: /health
+              path: /status
               port: 8080
               scheme: HTTP
             initialDelaySeconds: 20
