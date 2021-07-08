@@ -27,11 +27,11 @@ spec:
         application: catalog
         deployment: catalog
         version: v1
+        app.kubernetes.io/part-of: "example-app"
 
       # Enable Red Hat Service Mesh's automatic istio sidecar injection
       annotations:
         sidecar.istio.io/inject: "true"
-        app.openshift.io/connects-to: "argo-app"
 
       name: catalog
     spec:
