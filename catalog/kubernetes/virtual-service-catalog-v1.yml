@@ -10,5 +10,9 @@ spec:
     - destination:
         host: catalog
         subset: version-v1
-      weight: 100
+      weight: 75
+    - destination:
+        host: catalog
+        subset: version-v2
+      weight: 25
 ---
