@@ -7,6 +7,7 @@ metadata:
     app: partner
     application: partner
     version: v1
+    app.kubernetes.io/part-of: "example-app"
 
   name: partner-v1
 spec:
@@ -27,6 +28,7 @@ spec:
         application: partner
         deployment: partner
         version: v1
+        app.kubernetes.io/part-of: "example-app"
 
       # Enable Red Hat Service Mesh's automatic istio sidecar injection
       annotations:

@@ -7,6 +7,7 @@ metadata:
     app: gateway
     application: gateway
     version: v1
+    app.kubernetes.io/part-of: "example-app"
   name: gateway
 spec:
   selector:
@@ -26,6 +27,7 @@ spec:
         application: gateway
         deployment: gateway
         version: v1
+        app.kubernetes.io/part-of: "example-app"
 
       # Enable Red Hat Service Mesh's automatic istio sidecar injection
       annotations:
